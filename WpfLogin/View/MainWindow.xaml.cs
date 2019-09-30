@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfLogin.Controller;
+using WpfLogin.View;
 
 namespace WpfLogin
 {
@@ -24,21 +25,56 @@ namespace WpfLogin
         public MainWindow()
         {
             InitializeComponent();
+            Username_txt.Text = Properties.Settings.Default.Username;
         }
 
         private void Login(object sender, RoutedEventArgs e)
         {
-            UserController us = new UserController();
+            UserController CallUser = new UserController();
+
+            if(Username_txt.Text.Length == 0 && Password_pass.Password.Length == 0)
+            {
+                UsernameError.Text = "Username Not Valid !";
+                PasswordError.Text = "Wrong Password Please Try Again";
+                Password_pass.Focus();
+                Username_txt.Focus();
+            }
+            else if (Username_txt.Text.Length == 0)
+            {
+                UsernameError.Text = "Username Not Valid";
+                Username_txt.Focus();
+            }
+            else if (Password_pass.Password.Length == 0)
+            {
+                PasswordError.Text = "Wrong Password Please Try Again";
+                Password_pass.Focus();
+            } else
+            {
+                string username = Username_txt.Text;
+                string password = Password_pass.Password;
+
+                CallUser.UserLogin(username, password);
+                this.Hide();
+                Home home = new Home(username);
+                home.Show();
+               
+            }
+
+
         }
 
         private void Register(object sender, RoutedEventArgs e)
         {
-            EmployeeController emp = new EmployeeController(); 
+            this.Hide();
+            Register register = new Register();
+            register.Show(); 
         }
 
-        private void ChangePassword(object sender, RoutedEventArgs e)
-        {
 
+        private void RememberCheck_Checked(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.Username = Username_txt.Text;
+            Properties.Settings.Default.Save();
         }
     }
 }

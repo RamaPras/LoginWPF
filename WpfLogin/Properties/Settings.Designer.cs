@@ -26,5 +26,7 @@ namespace WpfLogin.Properties
                 return defaultInstance;
             }
         }
+
+        public string Username { get; internal set; }
     }
 }

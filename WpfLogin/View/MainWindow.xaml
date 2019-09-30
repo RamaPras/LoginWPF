@@ -7,17 +7,20 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d" Height="600" Width="450" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#B7B8B6">
     <Grid Cursor="AppStarting" Height="569" VerticalAlignment="Bottom">
-        <StackPanel Margin="50">
+        <StackPanel>
             <Image Source="F:\belajar C#\WpfLogin\WpfLogin\Assets\logo2.png " Width="96"  Height="96" />
-            <StackPanel Margin="25">
-                <TextBox Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Username"/>
-                <PasswordBox Margin="15" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Password"/>
-                <StackPanel>
-                    <CheckBox Margin="15 10" Width="200" Content="Remember Me"/>
-                    <Button Click="Login" Margin="15 10" Width="200" Content="Login"/>
-                    <Button Click="ChangePassword" Margin="15 10" Width="200" Content="Change Password"/>
+            <Border Margin="20 20" CornerRadius="10" Background="White">
+                <StackPanel Margin="25">
+                    <TextBox  Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Username" Name="Username_txt" />
+                    <TextBlock Name="UsernameError" Margin=" 15 0 15 0" OpacityMask="Crimson" Foreground="Red"></TextBlock>
+                    <PasswordBox  Margin="15" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Password" Name="Password_pass"/>
+                    <TextBlock Name="PasswordError" Margin=" 15 0 15 0" OpacityMask="Crimson" Foreground="Red"></TextBlock>
+                    <StackPanel>
+                        <CheckBox Content ="Remember Me " Margin="15 10" Width="200" Name="RememberCheck" Checked="RememberCheck_Checked" />
+                        <Button Click="Login" Margin="15 10" Width="200" Content="Login"/>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
+            </Border>
             <Button  Click="Register"  Margin="15 10" Width="200" Content="Register"/>
         </StackPanel>
         
